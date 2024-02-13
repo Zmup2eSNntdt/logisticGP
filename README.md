@@ -46,66 +46,9 @@ library(gridExtra)
 library(reshape2)
 ```
 
-## Introduction
+## Vignette
 
-This is an introduction to logisticGP package. \*\*\*
-
-Given a response-covariate pair
-$(y,\, \mathbf{x}^\mathrm{T}) \in\, \mathbb{R}\, \times\, \mathbb{R}^p$,
-Conditional density estimation (CDE) aims to find the density function
-of $y$ conditioned on the $\mathbf{x}^\mathrm{T}$ slice, denoted by
-$f(y\mid \mathbf{x}^\mathrm{T})$. In Bayesian paradigm, we assume prior
-knowledge on $f$ and subsequently find posterior estimates of $f$ given
-the data.
-
-In [\[our article\]](), we focus on developing a computationally
-tractable technique to model the conditional density using Logistic
-Gaussian Process (LGP) prior. The main idea behind this formulation is
-to use the triangular basis to approximate the Gaussian process (GP)
-using a pre-fixed regular grid, as discussed in [Maatouk and Bay
-(2017)](https://doi.org/10.1007/s11004-017-9673-2). The logistic density
-transform was introduced by [Leonard,
-1978](https://doi.org/10.1111/j.2517-6161.1978.tb01655.x) and we utilize
-the foundation to model the conditional density of spatially varying
-response in the presence of a high dimensional covariate space.
-
-## Model
-
-Let us denote $\mathcal{S} = \left\{1,2,\ldots,\mathrm{K}\right\}$ be
-the set of $\mathrm{K}$ locations which is assumed to be fixed
-throughout this article. Call
-$y_{i\mathrm{s}} \in (0,1), (i = {1,2,\ldots,n},\,\, \mathrm{s}\in\mathcal{S})$
-denote the response (FA measurement) corresponding to $i^{th}$
-individual at the $s^{th}$ location and $\mathbf{X}$ be a $n\times p$
-design matrix where the $i^{th}$ row
-$\mathbf{x}^\mathrm{T}_i = (x_{i1}, x_{i2}, \ldots x_{ip})$ represent
-the covariate vector for the $i^{th}$ individual. Furthermore, the rows
-of $\mathbf{X}$ are normalized such that
-$\max_{i \in \left\{1,2,\ldots, n\right\}} \|\mathbf{x}^\mathrm{T}_i\|_2 = 1$,
-where $\|\cdot\|_2$ denote the $\ell_2$-norm. Let $\beta(\mathrm{s})$ be
-the $p$–dimensional vector that varies spatially for each
-$\mathrm{s}\in \mathcal{S}$, such that $\|\beta(\mathrm{s})\|_2 = 1$.
-For any fixed $\mathrm{s}\in\mathcal{S}$, define the following map
-$\mathbf{x}_{{\mathrm{o}}}\to w_{\mathbf{x}_{{\mathrm{o}}},\mathrm{s}}:= {\small [\mathbf{x}^\mathrm{T}_{{\mathrm{o}}}\beta(\mathrm{s}) + 1]/2}$.
-One can see that $w_{\mathbf{x}_{{\mathrm{o}}},\mathrm{s}}\in [0,1]$,
-which easily follows from
-$\left|x^\mathrm{T}_{{\mathrm{o}}}\,\beta(\mathrm{s})\right|\leq \|x^\mathrm{T}_{{\mathrm{o}}}\|_2\|\beta(\mathrm{s})\|_2\leq 1$.
-Define
-$\Theta := \left\{(\xi,\tau,\beta) : \xi,\tau\in\mathbb{R}^{(\mathrm{N}+1)^2}, \beta\in \mathbb{R}^{p\mathrm{K}}\right\}$,
-given a covariate $(\mathbf{X}= \mathbf{x}^\mathrm{T}_\mathrm{o})$ and
-location $(\mathrm{S}=\mathrm{s})$, the conditional density of response
-$(y)$ is modeled using
-
-$$f_\theta(y \mid \mathbf{X}= \mathbf{x}^\mathrm{T}_{{\mathrm{o}}},\, \mathrm{S}= \mathrm{s}) =
-\exp\left[g_1\left(y,w_{\mathbf{x}_{{\mathrm{o}}},\,\mathrm{s}}\right) + g_2(y,\mathrm{s}) - \Phi_{\theta}\left(\mathbf{x}_{{\mathrm{o}}},\mathrm{s}\right)\right]$$
-where,
-$\Phi_{\theta}\left(\mathbf{x}_{\mathrm{o}},\mathrm{s}\right) = \log \int^1_0 \exp\left[g_1\left(y,w_{\mathbf{x}_{{\mathrm{o}}},\,\mathrm{s}}\right) + g_2(y,\mathrm{s})\right]dy$
-and $g_1(\cdot),\, g_2(\cdot):[0,1]^2\to \mathbb{R}$ are unknown
-functions, such that
-{$g_1(z_1,z_2) = \sum^\mathrm{N}_{ij=0}\xi_{ij}h_i(z_1)h_j(z_2)$} and
-{$g_2(z_1,z_2) = \sum^\mathrm{N}_{ij=0}\tau_{ij}h_i(z_1)h_j(z_2)$ for
-any $(z_1,z_2)\in[0,1]^2$} and some
-$\xi,\tau\in \mathbb{R}^{(\mathrm{N}+1)^2}$.
+The associated vignette can be found [here](./vignette.pdf)
 
 ## Example
 
