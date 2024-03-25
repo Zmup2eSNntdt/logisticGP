@@ -26,4 +26,4 @@ response in the presence of a high dimensional covariate space.
 ## Vignettes
 
 The vignettes of `logisticGP` package can be found
-[here](./logisticGP.html)
+[here](https://htmlpreview.github.io/?https://github.com/Zmup2eSNntdt/logisticGP/blob/main/logisticGP.html).
